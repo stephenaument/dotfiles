@@ -12,6 +12,7 @@
   co = checkout
   pf = push --force-with-lease
   st = status
+	praise = blame
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
@@ -27,3 +28,5 @@
   path = ~/.gitconfig.local
 [diff]
   colorMoved = zebra
+[pull]
+	rebase = true
