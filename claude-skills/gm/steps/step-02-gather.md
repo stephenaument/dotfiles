@@ -24,9 +24,11 @@ Check the target date's daily note (and if not present, the most recent prior da
 
 ### 2. Read recent standup entries
 
-Read `Daily Standup.md`. Extract the **last 3 entries** (the 3 most recent `# [[YYYY-MM-DD]]` blocks). From these, identify:
+Read the `# 📣 Standup Update` section from the **last 3 daily notes** (most recent workdays). From these, identify:
 - The most recent entry's **Doing** items - these are potential carry-forwards
 - Any **Done** items from recent days that provide context
+
+The standup lives in each daily note under `# 📣 Standup Update`, with `Done` and `Doing` sub-sections.
 
 ### 3. Run git log
 

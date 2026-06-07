@@ -6,7 +6,7 @@ Write all synthesized outputs from step 3 to their target locations in the vault
 ## File Safety Rules (apply to ALL writes)
 
 - **Never modify user-written content** in any file
-- **Append-only** for standup file and activity log
+- **Append-only** for activity log
 - **Field-population only** for inline Dataview fields - populate if empty, never overwrite
 - **Insert-into** for today's daily note - add content to specific locations, never modify existing
 
@@ -34,19 +34,28 @@ Write all synthesized outputs from step 3 to their target locations in the vault
 
 ## Write B: Standup Entry (Story 2.3)
 
-### Prepend standup draft to `Daily Standup.md`
+### Populate `# 📣 Standup Update` section in today's daily note
 
 *For today's processing only - skip for missed day catch-up.*
 
-**Target file:** `Daily Standup.md`
+**Target file:** `journal/daily/{today}.md`
 
-**Action:** Prepend a new entry at the top of the file (after the frontmatter `---\n\n---` block if present). The new entry goes ABOVE all existing entries.
+**Action:** Find the `# 📣 Standup Update` section. Replace the template placeholder content with the synthesized standup entry.
 
-**Exact format:**
+**Template structure (before):**
 ```
-# [[YYYY-MM-DD]]
+# 📣 Standup Update
 
-## My Update
+Done
+-
+
+Doing
+-
+```
+
+**After population:**
+```
+# 📣 Standup Update
 
 Done
 - {done item 1}
@@ -55,11 +64,11 @@ Done
 Doing
 - {doing item 1}
 - {doing item 2}
-
----
 ```
 
-The `---` goes at the **bottom** as a separator before the next entry. Do NOT prepend `---` at the top (it confuses Obsidian). Existing content below is never modified.
+**If the section already has content** (user filled it manually, or re-run): Do NOT overwrite. Skip this write.
+
+**Detection:** The section is considered empty/template if the Done and Doing lines only have `-` with no text after them.
 
 ---
 
@@ -97,7 +106,7 @@ After all writes are complete, summarize to the user:
 Good morning! Here's what I've done:
 
 - Daily summary written for {target_date}: "{summary_preview}"
-- Standup draft ready in Daily Standup.md - review before 10:05
+- Standup draft ready in today's note under "📣 Standup Update" - review before 10:05
 - {open_loop_count} open loop(s) surfaced in today's note
 - Open PRs table: {carried forward N PRs / not present}
 - {If Today's Focus written: "Today's Focus: N actionable items" | "Today's Focus: skipped (no actionable items beyond PR tracking)"}
